@@ -20,8 +20,7 @@ public class BaseTest {
     }
 
     @AfterMethod()
-    public void stopBrowser(ITestResult result){
-        System.out.println(result);
+    public void stopBrowser(ITestResult result) throws IOException {
         if(ITestResult.FAILURE == result.getStatus()){
             getScreenShot(result);
         }
@@ -30,19 +29,17 @@ public class BaseTest {
 
 
     @DataProvider
-    public Object[] getInvalidLoginData(){
+    public Object[][] getInvalidLoginData(){
         Map<Integer, List<String>> dataMap = DataHelper.readFile("src/main/resources/testdata.xlsx");
-        return DataHelper.formatData(dataMap);
+       Object[] d = DataHelper.formatData(dataMap);
+       return DataHelper.formatData(dataMap);
     }
 
-    public void getScreenShot(ITestResult result){
+    public void getScreenShot(ITestResult result) throws IOException {
         TakesScreenshot camera = (TakesScreenshot) BasePage.getWebDriver();
         File screenshot = camera.getScreenshotAs(OutputType.FILE);
-        try {
-            com.google.common.io.Files.move(screenshot, new File("output/"+ result.getName() +".png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        com.google.common.io.Files.move(screenshot,
+                new File("output/"+ result.getName() +".png"));
     }
 
 }

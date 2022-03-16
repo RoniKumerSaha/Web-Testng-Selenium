@@ -50,11 +50,15 @@ public class DataHelper {
     }
 
 
-    public static Object[] formatData(Map<Integer, List<String >> infoData ){
-        Object[] d = new Object[infoData.values().size()-1];
-        int i;
+    public static Object[][] formatData(Map<Integer, List<String >> infoData ){
+        Object[][] d = new Object[infoData.values().size()-1][2];
+        int i, j = 0;
         for(i = 0; i<infoData.values().size()-1; i++){
-            d[i] = infoData.get(i+1);
+            for( String s : infoData.get(i+1)){
+                d[i][j] = s;
+                j++;
+            }
+            j=0;
         }
         return d;
     }

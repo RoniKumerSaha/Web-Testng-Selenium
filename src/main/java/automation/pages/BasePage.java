@@ -55,12 +55,12 @@ public class BasePage extends DriverSetUp {
 
 
     public void acceptAlert(){
-        waitFor(1);
+        waitFor(2);
         getWebDriver().switchTo().alert().accept();
     }
 
     public String getAlertText(){
-        waitFor(1);
+        waitFor(2);
         return getWebDriver().switchTo().alert().getText();
     }
 }

@@ -1,7 +1,11 @@
 package automation.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.locators.RelativeLocator;
+
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class HomePage extends BasePage{
     @FindBy(id = "login2")
@@ -20,7 +24,6 @@ public class HomePage extends BasePage{
     public WebElement userProfileName;
 
 
-
     public void loginWith(String username, String password){
         waitFor(loginLink);
         loginLink.click();
@@ -28,6 +31,14 @@ public class HomePage extends BasePage{
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginBtn.click();
+    }
+
+    public String getPageHeading(){
+        return getWebDriver().findElement(
+                with(
+                        By.id("nava"))
+                        .toLeftOf(By.id("navbarExample"))
+                ).getText();
     }
 
 }
