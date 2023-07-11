@@ -21,6 +21,7 @@ public class DriverSetUp {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         options.addArguments("--silent");
+        options.addArguments("--remote-allow-origins=*");
         driver.set(new ChromeDriver(options));
         driver.set(setEventListener(driver.get()));
     }
